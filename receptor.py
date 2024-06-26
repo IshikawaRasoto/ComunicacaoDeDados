@@ -68,6 +68,9 @@ def cesar_decrypt(text, shift):
 
 def decrypt_message(encrypted_text):
     decrypted_text = cesar_decrypt (encrypted_text, cesar_desloc)
+    
+    #Descomentar essa e comentar a de cima para desativar a criptografia
+    #decrypted_text = encrypted_text
     txt_decrypted.delete("1.0", tk.END)
     txt_decrypted.insert("1.0", decrypted_text)
     return decrypted_text

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import socket
 
-ip_receiver = '25.7.150.147'
+ip_receiver = '25.6.83.161'
 port = 12345
 
 dados_global = ''
@@ -53,7 +53,13 @@ def manchester_differential_encoding(binary_data):
     return ''.join('1' if level == 'high' else '0' for level in encoded_data)
 
 def convert_to_binary(text):
+    
+    # A linha abaixo converte em binário a String que o usuário colocou
     binary_text = ' '.join(format(ord(x), '08b') for x in text)
+    
+    # Descomentar a linha abaixo e comentar a de cima caso queira testar a forma de onda com valor 19
+    #binary_text = ' '.join(format(19, '08b') for x in text)
+
     txt_binary.delete("1.0", tk.END)
     txt_binary.insert("1.0", binary_text)
     return binary_text.replace(' ', '')  
@@ -63,8 +69,12 @@ def encrypt_message():
     global deslocamento_cesar
 
     plain_text = txt_input.get("1.0", tk.END).strip()
-
+    
+    
     encrypted_text = caesar_encrypt(plain_text, deslocamento_cesar)
+    # Descomentar a linha abaixo e comentar a de cima para desabilitar a criptografia
+    #encrypted_text = plain_text
+    
     txt_encrypted.delete("1.0", tk.END)
     txt_encrypted.insert("1.0", encrypted_text)
     binary_text = convert_to_binary(encrypted_text)  
